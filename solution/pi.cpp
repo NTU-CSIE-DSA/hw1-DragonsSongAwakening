@@ -22,6 +22,7 @@ void incident() {
   if (type == 1) {
     int a; cin >> a;
     int pre = find_pre(a);
+    if (pre == -1) return;
     record[a].pb(p[pre] - p[a]);
     assert(p[pre] >= p[a]);
     p[a] = p[pre];

@@ -68,6 +68,7 @@ void gen_incident(int type) {
 			player[a].top_up(diff);
 			swap_rank(a, pre);
 			vec_dup.push_back(a);
+			r_top_up.push_back(a);
 		}
   } else if (type == 2) {
     n_up++;

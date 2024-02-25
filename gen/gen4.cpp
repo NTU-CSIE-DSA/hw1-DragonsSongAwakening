@@ -68,6 +68,7 @@ void gen_incident(int type) {
 			player[a].top_up(diff);
 			swap_rank(a, pre);
 			vec_dup.push_back(a);
+			r_top_up.push_back(a);
 		}
   } else if (type == 2) {
     n_up++;
@@ -130,9 +131,10 @@ int main(int argc, char* argv[]) {
 			if (rnd.next(0, 4)) type = 3;
 			else type = 1;
 		} else {
-			vector<int> types{1, 2};
+			vector<int> types{1};
+			if (!rnd.next(0, T/500)) types.push_back(2);
 			if (vec_dup.size()) {
-				types.push_back(3);
+				if (!rnd.next(0, T/100)) types.push_back(3);
 			}
 			if (r_top_up.size()) types.push_back(4);
 			type = rnd.any(types);

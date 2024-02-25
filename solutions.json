@@ -14,5 +14,27 @@
       "samples": "correct",
       "sub1": "correct"
     }
+  },
+  "out_of_int.cpp": {
+    "verdict": "incorrect",
+    "except": {
+      "samples": "correct"
+    }
+  },
+  "no_bs.cpp": {
+    "verdict": "time_limit",
+    "except": {
+      "samples": "correct",
+      "sub1": "correct"
+    }
+  },
+  "sub3.cpp": {
+    "verdict": "time_limit",
+    "except": {
+      "samples": "correct",
+      "sub1": "correct",
+      "sub2": "correct",
+      "sub3": "correct"
+    }
   }
 }
