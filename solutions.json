@@ -1,0 +1,15 @@
+{
+  "vector.cpp": {
+    "verdict": "model_solution"
+  },
+  "vector_ll.cpp": {
+    "verdict": "correct"
+  },
+  "pi.cpp": {
+    "verdict": "time_limit",
+    "except": {
+      "samples": "correct",
+      "sub1": "correct"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@subtask samples
+manual sample-1.in
+manual sample-2.in
+
+@subtask sub1
+@include samples
+gen1 -subtask 1
+
+@subtask sub2
+gen1 -subtask 2
+
+@subtask sub3
+gen1 -subtask 3
+
+@subtask full
+@include sub1
+@include sub2
+@include sub3
+gen1
