@@ -29,7 +29,7 @@ int main() {
 			inf.readSpace();
 			inf.readLong(0, MAXq, "q_i");
 		}
-		if (T > 0) inf.readEoln();
+		inf.readEoln();
 	}
 
 	inf.readEof();

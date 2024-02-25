@@ -5,6 +5,9 @@
   "vector_ll.cpp": {
     "verdict": "correct"
   },
+  "list.cpp": {
+    "verdict": "correct"
+  },
   "pi.cpp": {
     "verdict": "time_limit",
     "except": {

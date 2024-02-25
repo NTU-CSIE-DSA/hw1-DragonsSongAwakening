@@ -31,7 +31,7 @@ int main() {
 			inf.readSpace();
 			inf.readInt(1, N, "b_i");
 		}
-		if (T > 0) inf.readEoln();
+		inf.readEoln();
 	}
 
 	inf.readEof();

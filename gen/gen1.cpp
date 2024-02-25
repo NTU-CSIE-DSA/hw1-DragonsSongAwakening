@@ -1,5 +1,6 @@
 /*
- * random incidents and query
+ * Incidents and query are random.
+ * args: N, T, M, subtask
  */
 #include <iostream>
 #include <vector>
@@ -13,7 +14,7 @@ int main(int argc, char* argv[]) {
 	int subtask = opt<int>("subtask", 4);
 	int N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
-	int M = opt<int>("M", (subtask == 3)? 1: 500'000);
+	int M = opt<int>("M", (subtask == 3)? 1: rnd.next(1, 500'000));
 	cout << N << ' ' << T << ' ' << M << '\n';
 
 	vector<int> p;
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
 		cout << incident;
 		if (incident == 1 || incident == 4) cout << ' ' << rnd.next(1, N);
 		if (incident == 3) cout << ' ' << rnd.next((ll)0, (ll)1'000'000'000'000'000'000);
-		if (T > 0) cout << '\n';
+		cout << '\n';
 	}
 	return 0;
 }

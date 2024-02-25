@@ -17,3 +17,8 @@ gen1 -subtask 3
 @include sub2
 @include sub3
 gen1
+gen1 -M 500000
+gen1 -M 16 -N 1000
+gen2 -duplicate 5000 -M 3 
+gen3 -duplicate 5000 -M 2 
+gen4 -duplicate 5000 -M 8
