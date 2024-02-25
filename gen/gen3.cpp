@@ -1,6 +1,7 @@
 /*
  * Incident 2 occurs t times at first.
  * args: N, T, M, t, subtask, duplicate
+ * N should be at least duplicate.
  * T should be at least t.
  */
 #include <iostream>
@@ -71,37 +72,7 @@ void gen_incident(int type) {
 		vec_dup.clear();
   } else if (type == 3) {
 		assert(vec_dup.size());
-    int target = rnd.any(vec_dup);
-		ll q = -1;
-		int shift = rnd.next(0, 2);
-		if (shift == 0) { // equal
-			q = player[target].update();
-		} else if (shift == 1) { // larger
-			if (player[target].p != player[rank_table[1]].p) {
-				int rank = player[target].rank;
-				int pre_rank = rank-1;
-				int pre = rank_table[pre_rank];
-				while (player[pre].update() == player[target].update()) {
-					pre_rank--;
-					pre = rank_table[pre_rank];
-				}
-				if (rnd.next(0, 1)) q = rnd.next(player[target].p, player[pre].p);
-				else q = player[pre].p;
-			} else q = player[1].p + rnd.next((ll)0, (ll)1e17);
-		} else if (shift == 2) { // smaller
-			if (player[target].p != player[rank_table[N]].p) {
-				int rank = player[target].rank;
-				int nxt_rank = rank+1;
-				int nxt = rank_table[nxt_rank];
-				while (player[nxt].update() == player[target].update()) {
-					nxt_rank++;
-					nxt = rank_table[nxt_rank];
-				}
-				q = rnd.next(player[nxt].p, player[target].p);
-				if (rnd.next(0, 1)) q = rnd.next(player[nxt].p, player[target].p);
-				else q = player[nxt].p;
-			} else q = rnd.next((ll)0, player[target].p);
-		}
+		ll q = rnd.next((ll)0, (ll)(player[rank_table[1]].p*1.05));
 		assert(q >= 0);
 		cout << ' ' << q;
   } else if (type == 4) {
@@ -152,18 +123,14 @@ int main(int argc, char* argv[]) {
 			if (rnd.next(0, 4)) type = 3;
 			else type = 1;
 		} else {
-			vector<int> types{1};
-			if (!rnd.next(0, T/100)) types.push_back(2);
+			vector<int> types{1, 2};
 			if (vec_dup.size()) {
-				types.push_back(3);
-				types.push_back(3);
-				types.push_back(3);
 				types.push_back(3);
 			}
 			if (r_top_up.size()) types.push_back(4);
 			type = rnd.any(types);
-			gen_incident(type);
 		}
+		gen_incident(type);
 	}
 	return 0;
 }

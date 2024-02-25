@@ -1,9 +1,10 @@
 /*
  * After many incident 1, 
- * query powers that many candidates possess.
- * Only query record that is not empty.
+ * Incident 3 query powers that many candidates possess.
+ * Incident 4 only query record that is not empty.
  * Classmate that has more topping up record will be queried for their record more frequently.
  * args: N, T, M, subtask, duplicate
+ * N should be at least duplicate.
  */
 #include <iostream>
 #include <vector>
@@ -89,7 +90,7 @@ void gen_incident(int type) {
 				}
 				if (rnd.next(0, 1)) q = rnd.next(player[target].p, player[pre].p);
 				else q = player[pre].p;
-			} else q = player[1].p + rnd.next((ll)0, (ll)1e17);
+			} else q = player[rank_table[1]].p + rnd.next((ll)0, (ll)1e17);
 		} else if (shift == 2) { // smaller
 			if (player[target].p != player[rank_table[N]].p) {
 				int rank = player[target].rank;
@@ -159,8 +160,8 @@ int main(int argc, char* argv[]) {
 			}
 			if (r_top_up.size()) types.push_back(4);
 			type = rnd.any(types);
-			gen_incident(type);
 		}
+		gen_incident(type);
 	}
 	return 0;
 }

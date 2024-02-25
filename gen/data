@@ -5,20 +5,80 @@ manual sample-2.in
 @subtask sub1
 @include samples
 gen1 -subtask 1
+gen1 -subtask 1 -N 8 -T 1000
+gen1 -subtask 1 -N 10 -T 996 -M 5
+gen1 -subtask 1 -N 15 -T 997 -M 500000
+gen1 -subtask 1 -N 989 -T 925 -M 48763
+gen2 -subtask 1 -N 8 -T 1000 -duplicate 3
+gen2 -subtask 1 -N 10 -T 996 -M 5 -duplicate 7
+gen2 -subtask 1 -N 15 -T 997 -M 500000 -duplicate 12
+gen2 -subtask 1 -N 989 -T 925 -M 48763 -duplicate 988
+gen2 -subtask 1 -N 990 -T 1000 -M 48763 -duplicate 980
+gen3 -subtask 1 -N 990 -T 1000 -t 100 -M 763 -duplicate 0
+gen3 -subtask 1 -N 999 -T 1000 -t 150 -M 7 -duplicate 0
+gen3 -subtask 1 -N 1000 -T 1000 -t 200 -M 8 -duplicate 18
+gen4 -subtask 1 -N 990 -n 10 -T 1000 -M 63 -duplicate 0
+gen4 -subtask 1 -N 999 -n 8 -T 1000 -M 77 -duplicate 998
+gen4 -subtask 1 -N 1000 -n 1 -T 1000 -M 1509 -duplicate 500
 
 @subtask sub2
 gen1 -subtask 2
+gen1 -subtask 2 -N 8 -T 500000
+gen1 -subtask 2 -N 588 -T 496875 -M 30
+gen1 -subtask 2 -N 875923 -T 499999 -M 200
+gen1 -subtask 2 -N 989 -T 925 -M 48763
+gen2 -subtask 2 -N 8 -T 500000 -duplicate 7
+gen2 -subtask 2 -N 200 -T 99600 -M 5 -duplicate 150
+gen2 -subtask 2 -N 1000000 -T 500000 -M 20 -duplicate 500000
+gen2 -subtask 2 -N 989000 -T 499999 -M 48763 -duplicate 987000
+gen4 -subtask 2 -N 1000000 -n 10 -T 500000 -M 1777 -duplicate 20
+gen4 -subtask 2 -N 999857 -n 1535 -T 500000 -M 77 -duplicate 9998
+gen4 -subtask 2 -N 1000000 -n 1 -T 500000 -M 155555 -duplicate 500
 
 @subtask sub3
 gen1 -subtask 3
+gen1 -subtask 3 -N 8 -T 500000
+gen1 -subtask 3 -N 588 -T 496875
+gen1 -subtask 3 -N 875923 -T 499999
+gen1 -subtask 3 -N 989 -T 925
+gen2 -subtask 3 -N 8 -T 500000 -duplicate 7
+gen2 -subtask 3 -N 200 -T 99600 -duplicate 150
+gen2 -subtask 3 -N 1000000 -T 500000 -duplicate 500000
+gen2 -subtask 3 -N 989000 -T 499999 -duplicate 985000
+gen3 -subtask 3 -N 1000000 -T 500000 -t 490000 -duplicate 0
+gen3 -subtask 3 -N 999999 -T 497888 -t 1509 -duplicate 20
+gen4 -subtask 3 -N 1000000 -n 10 -T 500000 -duplicate 20
+gen4 -subtask 3 -N 999857 -n 1535 -T 500000 -duplicate 9998
+gen4 -subtask 3 -N 1000000 -n 1 -T 500000 -duplicate 500
 
 @subtask full
 @include sub1
 @include sub2
 @include sub3
 gen1
-gen1 -M 500000
-gen1 -M 16 -N 1000
-gen2 -duplicate 5000 -M 3 
-gen3 -duplicate 5000 -M 2 
-gen4 -duplicate 5000 -M 8
+gen1 -N 8 -T 500000
+gen1 -N 588 -T 496875
+gen1 -N 875923 -T 499999
+gen1 -N 989 -T 925
+gen2 -N 8 -T 500000 -duplicate 7
+gen2 -N 200 -T 99600 -duplicate 150
+gen2 -N 1000000 -T 500000 -duplicate 500000
+gen2 -N 989000 -T 499999 -duplicate 919000
+gen3 -N 1000000 -T 500000 -t 490000 -duplicate 0
+gen3 -N 999999 -T 497888 -t 1509 -duplicate 20
+gen4 -N 1000000 -n 10 -T 500000 -duplicate 20
+gen4 -N 999857 -n 1535 -T 500000 -duplicate 9998
+gen4 -N 1000000 -n 1 -T 500000 -duplicate 500
+
+gen1 -N 588 -T 496875 -M 30
+gen1 -N 875923 -T 499999 -M 200
+gen1 -N 989 -T 925 -M 48763
+gen2 -N 8 -T 500000 -duplicate 7
+gen2 -N 200 -T 99600 -M 5 -duplicate 150
+gen2 -N 1000000 -T 500000 -M 20 -duplicate 500000
+gen2 -N 989000 -T 499999 -M 48763 -duplicate 981000
+gen3 -N 1000000 -T 500000 -t 490000 -M 100000 -duplicate 0
+gen3 -N 999999 -T 497888 -t 1509 -M 7 -duplicate 20
+gen4 -N 1000000 -n 10 -T 500000 -M 1777 -duplicate 20
+gen4 -N 999857 -n 1535 -T 500000 -M 77 -duplicate 9998
+gen4 -N 1000000 -n 1 -T 500000 -M 155555 -duplicate 500
