@@ -53,17 +53,14 @@ Please separate integers in a line by spaces.
 
 ## Subtasks
 ### Subtask 1 (10 pts)
-（純暴力：事件一慢慢找、事件二暴力更新、不用二分搜、不用雙指針、不會爆 int）
 * $1\leq N\leq 10^3$
 * $1\leq T\leq 10^3$
 * $m_i = M$
 
 ### Subtask 2 (10 pts)
-（只要會二分搜就好）
 * Only incidents 1 and 3 occur.
 
 ### Subtask 3 (30 pts)
-（不用雙指針）
 * $m_i = M = 1$
 
 ### Subtask 4 (50 pts)
