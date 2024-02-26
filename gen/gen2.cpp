@@ -3,7 +3,8 @@
  * Incident 3 query powers that many candidates possess.
  * Incident 4 only query record that is not empty.
  * Classmate that has more topping up record will be queried for their record more frequently.
- * args: N, T, M, subtask, duplicate
+ * incident <freq> will be queried 4 times as other queries
+ * args: N, T, M, subtask, duplicate, freq{3, 4}
  * N should be at least duplicate.
  */
 #include <iostream>
@@ -17,14 +18,14 @@ using ll = long long;
 const int MAXN = 1e6+6;
 int n_up = 0;
 int N, M;
+int subtask;
+int freq;
 
 struct Classmate {
   ll p;
   vector<ll> record;
   int rank; // classmate -> rank
   int last_up = 0;
-  int c1 = -1, c2 = -1;
-  ll spending = 0;
   ll update() {
     p += (ll)(N - rank) * (n_up - last_up);
     assert((ll)(N - rank) * (n_up - last_up) >= 0);
@@ -34,13 +35,6 @@ struct Classmate {
   void top_up(ll power) {
     p += power;
     record.push_back(power);
-    
-    c1++;
-    spending += power;
-    if (c1 - c2 > M) {
-      spending -= (record[++c2]);
-      assert(c1 - c2 == M);
-    }
   }
 };
 
@@ -110,7 +104,12 @@ void gen_incident(int type) {
 		cout << ' ' << q;
   } else if (type == 4) {
 		assert(r_top_up.size());
+		int b = rnd.any(r_top_up);
+		assert(player[b].record.size());
 		cout << ' ' << rnd.any(r_top_up);
+		if (subtask != 5) cout << ' ' << M;
+		else if (rnd.next(0, 1000)) cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+		else cout << ' ' << rnd.next(1, M);
   } else cout << "ERROR\n";
 	cout << '\n';
 }
@@ -118,7 +117,9 @@ void gen_incident(int type) {
 int main(int argc, char* argv[]) {
 	registerGen(argc, argv, 1);
 
-	int subtask = opt<int>("subtask", 4);
+	subtask = opt<int>("subtask", 4);
+	freq = opt<int>("freq", 0);
+	assert(freq != 2);
 	N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
 	M = opt<int>("M", (subtask == 3)? 1: rnd.next(0, 500'000));
@@ -153,14 +154,12 @@ int main(int argc, char* argv[]) {
 		} else {
 			vector<int> types{1};
 			if (!rnd.next(0, T/100)) types.push_back(2);
-			if (vec_dup.size()) {
-				types.push_back(3);
-				types.push_back(3);
-				types.push_back(3);
-				types.push_back(3);
-			}
+			if (vec_dup.size()) types.push_back(3);
 			if (r_top_up.size()) types.push_back(4);
 			type = rnd.any(types);
+			if (freq) {
+				for (int i = 0; i < 3; i++) types.push_back(freq);
+			}
 		}
 		gen_incident(type);
 	}

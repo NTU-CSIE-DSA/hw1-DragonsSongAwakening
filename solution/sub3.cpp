@@ -77,6 +77,7 @@ void incident() {
     else cout << rank << " " << rank_table[rank] << '\n';
   } else if (type == 4) {
     int b; cin >> b;
+    int m; cin >> m;
     ll ans = 0;
     int j = player[b].record.size();
     for (int i = 1; i <= M; i++) {

@@ -26,8 +26,10 @@ int main(int argc, char* argv[]) {
 		if (subtask == 2) incident = rnd.any(vector<int>{1, 3});
 		else incident = rnd.next(1, 4);
 		cout << incident;
-		if (incident == 1 || incident == 4) cout << ' ' << rnd.next(1, N);
+		if (incident == 1) cout << ' ' << rnd.next(1, N);
 		if (incident == 3) cout << ' ' << rnd.next((ll)0, (ll)1'000'000'000'000'000'000);
+		if (incident == 4 && subtask == 5) cout << ' ' << rnd.next(1, N) << ' ' << rnd.next(1, M);
+		if (incident == 4 && subtask != 5) cout << ' ' << rnd.next(1, N) << ' ' << M;
 		cout << '\n';
 	}
 	return 0;

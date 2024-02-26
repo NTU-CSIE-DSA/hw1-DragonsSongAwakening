@@ -10,11 +10,9 @@ int n_up = 0;
 
 struct Classmate {
   ll p;
-  vector<ll> record;
+  vector<ll> record = vector<ll>(1);
   int rank; // classmate -> rank
   int last_up = 0;
-  int c1 = -1, c2 = -1;
-  ll spending = 0;
   // Classmate(_p, _rank, _last_up) : p(_p), rank(_rank), last_up(_last_up) {}
   ll update() {
     p += (ll)(N - rank) * (n_up - last_up);
@@ -24,14 +22,7 @@ struct Classmate {
   }
   void top_up(ll power) {
     p += power;
-    record.pb(power);
-    
-    c1++;
-    spending += power;
-    if (c1 - c2 > M) {
-      spending -= (record[++c2]);
-      assert(c1 - c2 == M);
-    }
+    record.pb(record[record.size()-1]+power);
   }
 };
 Classmate player[MAXN+1];
@@ -71,7 +62,9 @@ void incident() {
     else cout << rank << " " << rank_table[rank] << '\n';
   } else if (type == 4) {
     int b; cin >> b;
-    cout << player[b].spending << '\n';
+    int m; cin >> m;
+    int size = player[b].record.size();
+    cout << player[b].record[size-1] - player[b].record[max(0, size-m-1)] << '\n';
   } else cout << "ERROR\n";
 }
 
@@ -91,8 +84,9 @@ int main() {
   }
   cout << '\n';
   for (int i = 1; i <= N; i++) {
-    cout << player[i].record.size();
-    for (ll j : player[i].record) cout << ' ' << j;
+    cout << player[i].record.size() - 1;
+    for (int j = 1; j < (int)player[i].record.size(); j++)
+      cout << ' ' << player[i].record[j]-player[i].record[j-1];
     cout << '\n';
   }
   return 0;

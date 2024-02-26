@@ -16,14 +16,13 @@ using ll = long long;
 const int MAXN = 1e6+6;
 int n_up = 0;
 int N, M;
+int subtask;
 
 struct Classmate {
   ll p;
   vector<ll> record;
   int rank; // classmate -> rank
   int last_up = 0;
-  int c1 = -1, c2 = -1;
-  ll spending = 0;
   ll update() {
     p += (ll)(N - rank) * (n_up - last_up);
     assert((ll)(N - rank) * (n_up - last_up) >= 0);
@@ -33,13 +32,6 @@ struct Classmate {
   void top_up(ll power) {
     p += power;
     record.push_back(power);
-    
-    c1++;
-    spending += power;
-    if (c1 - c2 > M) {
-      spending -= (record[++c2]);
-      assert(c1 - c2 == M);
-    }
   }
 };
 
@@ -79,8 +71,12 @@ void gen_incident(int type) {
 		assert(q >= 0);
 		cout << ' ' << q;
   } else if (type == 4) {
-		assert(r_top_up.size());
+		int b = rnd.any(r_top_up);
+		assert(player[b].record.size());
 		cout << ' ' << rnd.any(r_top_up);
+		if (subtask != 5) cout << ' ' << M;
+		else if (rnd.next(0, 1000)) cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+		else cout << ' ' << rnd.next(1, M);
   } else cout << "ERROR\n";
 	cout << '\n';
 }
@@ -95,7 +91,7 @@ vector<int> pick(int n) {
 int main(int argc, char* argv[]) {
 	registerGen(argc, argv, 1);
 
-	int subtask = opt<int>("subtask", 4);
+	subtask = opt<int>("subtask", 4);
 	N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int n = opt<int>("n", (subtask == 1)? 5: 120);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);

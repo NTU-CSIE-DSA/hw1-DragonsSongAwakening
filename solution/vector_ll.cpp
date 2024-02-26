@@ -78,6 +78,7 @@ void incident() {
     else cout << rank << " " << rank_table[rank] << '\n';
   } else if (type == 4) {
     int b; cin >> b;
+    int m; cin >> m;
     cout << player[b].spending << '\n';
   } else cout << "ERROR\n";
 }

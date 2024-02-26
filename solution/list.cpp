@@ -2,14 +2,14 @@
 #include<stdlib.h>
 #include<assert.h>
 
-const int MAXN = 1e6+6;
+#define MAXN 1000006
 typedef long long ll;
 int N, M;
 int n_up = 0;
 
 typedef struct Node {
-  Node *pre;
-  Node *nxt;
+  struct Node *pre;
+  struct Node *nxt;
   ll value;
 } Node;
 
@@ -32,8 +32,8 @@ typedef struct Classmate {
   int last_up;
 } Classmate;
 
-Classmate player[MAXN+1];
-int rank_table[MAXN+1]; // rank -> classmate
+Classmate player[MAXN];
+int rank_table[MAXN]; // rank -> classmate
 
 void player_init(int i, int p, int rank) {
   player[i].p = p;
@@ -109,8 +109,9 @@ void incident() {
     if (rank == -1) printf("0 0\n");
     else printf("%d %d\n", rank, rank_table[rank]);
   } else if (type == 4) {
-    int b;
+    int b, m;
     scanf("%d", &b);
+    scanf("%d", &m);
     printf("%lld\n", player[b].spending);
   };
 }

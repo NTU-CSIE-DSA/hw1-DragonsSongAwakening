@@ -9,21 +9,26 @@
     "sub1": {
       "index": 1,
       "score": 10,
-      "validators": ["validator_sub1.cpp"]
+      "validators": ["validator_sub1.cpp", "validator_basic.cpp"]
     },
     "sub2": {
       "index": 2,
       "score": 10,
-      "validators": ["validator_sub2.cpp"]
+      "validators": ["validator_sub2.cpp", "validator_basic.cpp"]
     },
     "sub3": {
       "index": 3,
       "score": 30,
-      "validators": ["validator_sub3.cpp"]
+      "validators": ["validator_sub3.cpp", "validator_basic.cpp"]
+    },
+    "basic": {
+      "index": 4,
+      "score": 49,
+      "validators": ["validator_basic.cpp"]
     },
     "full": {
-      "index": 4,
-      "score": 50,
+      "index": 5,
+      "score": 1,
       "validators": []
     }
   }

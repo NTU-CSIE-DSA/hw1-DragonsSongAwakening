@@ -13,7 +13,7 @@ int main() {
 	inf.readSpace();
 	int T = inf.readInt(1, MAXT, "T");
 	inf.readSpace();
-	inf.readInt(1, MAXM, "M");
+	int M = inf.readInt(1, MAXM, "M");
 	inf.readEoln();
 
 	inf.readInts(N, 0, MAXp, "p_i");
@@ -30,6 +30,8 @@ int main() {
 		} else if (incident == 4) {
 			inf.readSpace();
 			inf.readInt(1, N, "b_i");
+			inf.readSpace();
+			inf.readInt(M, M, "m_i");
 		}
 		inf.readEoln();
 	}

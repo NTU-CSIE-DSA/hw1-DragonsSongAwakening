@@ -44,9 +44,10 @@ void incident() {
     else cout << ans << ' ' << ans_label << '\n';
   } else if (type == 4) {
     int b; cin >> b;
+    int m; cin >> m;
     ll ans = 0;
     int n_attack = record[b].size();
-    for (int i = 1; i <= M && i <= n_attack; i++) ans += record[b][n_attack-i];
+    for (int i = 1; i <= m && i <= n_attack; i++) ans += record[b][n_attack-i];
     cout << ans << '\n';
   } else cout << "ERROR\n";
 }
