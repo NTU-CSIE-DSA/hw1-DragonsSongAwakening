@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 	int subtask = opt<int>("subtask", 4);
 	int N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
-	int M = opt<int>("M", (subtask == 3)? 1: rnd.next(1, 500'000));
+	int M = opt<int>("M", (subtask == 3 || subtask == 2)? 1: rnd.next(1, 500'000));
 	cout << N << ' ' << T << ' ' << M << '\n';
 
 	vector<int> p;

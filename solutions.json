@@ -2,6 +2,9 @@
   "vector_presum.cpp": {
     "verdict": "model_solution"
   },
+  "skip_list.cpp": {
+    "verdict": "correct"
+  },
   "vector.cpp": {
     "verdict": "correct",
     "except": {
@@ -17,13 +20,6 @@
     }
   },
   "list.cpp": {
-    "verdict": "correct",
-    "except": {
-      "samples": "incorrect",
-      "full": "incorrect"
-    }
-  },
-  "list2.cpp": {
     "verdict": "correct",
     "except": {
       "samples": "incorrect",

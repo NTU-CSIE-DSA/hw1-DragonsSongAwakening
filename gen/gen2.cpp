@@ -108,8 +108,10 @@ void gen_incident(int type) {
 		assert(player[b].record.size());
 		cout << ' ' << rnd.any(r_top_up);
 		if (subtask != 5) cout << ' ' << M;
-		else if (rnd.next(0, 1000)) cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
-		else cout << ' ' << rnd.next(1, M);
+		else if (rnd.next(0, 1000)) {
+			if (rnd.next(0, 4)) cout << ' ' << min(rnd.next(max((int)player[b].record.size()/10*9, 1), (int)player[b].record.size()), M);
+			else cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+		} else cout << ' ' << rnd.next(1, M);
   } else cout << "ERROR\n";
 	cout << '\n';
 }
@@ -122,7 +124,7 @@ int main(int argc, char* argv[]) {
 	assert(freq != 2);
 	N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
-	M = opt<int>("M", (subtask == 3)? 1: rnd.next(0, 500'000));
+	M = opt<int>("M", (subtask == 3 || subtask == 2)? 1: rnd.next(1, 500'000));
 	cout << N << ' ' << T << ' ' << M << '\n';
 
 	int duplicate = opt<int>("duplicate", 1);

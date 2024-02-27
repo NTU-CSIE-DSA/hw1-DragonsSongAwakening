@@ -36,11 +36,9 @@ The first part consists of the answers to Little Shimeming's question.
 * For incident 3, output 2 integers, representing the last place with at least $q_i$ power and the label of the classmate at that place. If no such classmate, output "$0$ $0$" (without quotation marks).
 * For incident 4, output 1 integer, representing the total power gained by topping up in the last $m_i$ attacks launched by the classmate labeled $b_i$. If the number of attacks launched by the classmate is less than $m_i$, output the sum of the power gained by topping up in all their attacks.
 
-Then output an empty line.
-
 The first integer $k_j$ in the $j$-th line of the second part (consists of $N$ lines) represents the number of attack the classmate labeled $j$ launched. The subsequent integers denote the power gained by topping up in each attack, in order.
 
-Please separate integers in a line by spaces.
+Please separate integers in each line by spaces.
 
 ### Constraints
 * $1\leq N \leq 10^6$
