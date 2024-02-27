@@ -1,9 +1,10 @@
 /*
- * Incident 1 occurs on only n people.
+ * Incident 1 occurs on only n people
+ * (guarantee that the original ranking of the picked one is in the last half).
  * Incident 4 only query record that is not empty.
  * args: N, T, M, n, subtask, duplicate
  * N should be at least duplicate.
- * N should be at least n.
+ * N should be at least 2*n.
  */
 #include <iostream>
 #include <vector>
@@ -75,15 +76,17 @@ void gen_incident(int type) {
 		assert(player[b].record.size());
 		cout << ' ' << rnd.any(r_top_up);
 		if (subtask != 5) cout << ' ' << M;
-		else if (rnd.next(0, 1000)) cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
-		else cout << ' ' << rnd.next(1, M);
+		else if (rnd.next(0, 1000)) {
+			if (rnd.next(0, 4)) cout << ' ' << min(rnd.next(max((int)player[b].record.size()/10*9, 1), (int)player[b].record.size()), M);
+			else cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+		} else cout << ' ' << rnd.next(1, M);
   } else cout << "ERROR\n";
 	cout << '\n';
 }
 
 vector<int> pick(int n) {
 	vector<int> tmp;
-	for (int i = 1; i <= N; i++) tmp.push_back(i);
+	for (int i = N/2; i <= N; i++) tmp.push_back(i);
 	shuffle(tmp.begin(), tmp.end());
 	return vector<int>(tmp.begin(), tmp.begin()+n);
 }
@@ -95,8 +98,8 @@ int main(int argc, char* argv[]) {
 	N = opt<int>("N", (subtask == 1)? 1'000: 1'000'000);
 	int n = opt<int>("n", (subtask == 1)? 5: 120);
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
-	assert(N >= n);
-	M = opt<int>("M", (subtask == 3)? 1: rnd.next(0, 500'000));
+	assert(N >= 2*n);
+	M = opt<int>("M", (subtask == 3 || subtask == 2)? 1: rnd.next(1, 500'000));
 	cout << N << ' ' << T << ' ' << M << '\n';
 	selected = pick(n);
 
