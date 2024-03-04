@@ -1,10 +1,18 @@
 ## Problem Description
 
-$N$ classmates of Little Shimeming are playing **Dragon's Song: Awakening** (DSA), a mobile game notorious for its inflationary powers. The classmates are labeled from $1$ to $N$ based on their initial ranks in the game. Each of them possesses a power denoted as $p_1, p_2, \cdots, p_N$, where $p_1 \geq p_2 \geq \cdots \geq p_N$.
+$N$ classmates of Little Shimeming are playing Dragon's Song: Awakening (DSA), 
+a mobile game notorious for its inflationary powers.
+The classmates are labeled from $1$ to $N$ based on their initial ranks in the game.
+Each of them initially possesses a power denoted as $p_1, p_2, \cdots, p_N$,
+where $p_1 \geq p_2 \geq \cdots \geq p_N$.
 
-The game proceeds with $T$ incidents happening sequentially. The $i$-th incident is one of the following:
+The game proceeds with $T$ incidents happening sequentially.
+The $i$-th incident is one of the following:
 
-1. The classmate labeled $a_i$ at rank $j$ attacks! That is, ze increases zir power to be the same as the classmate that is right in front of them (i.e. the classmate at rank $j\!-\!1$). Then the two classmates swap their ranks.
+1. The classmate labeled $a_i$ at rank $j$ attacks!
+That is, ze increases zir power to be the same as the classmate that is right in front of zir
+(i.e. the classmate at rank $j-1$).
+Then the two classmates swap their ranks.
     * If the classmate labeled $a_i$ is already at the first place, nothing happens.
     * If the two classmates are of the same power, there is no power increase but the swapping should still happen.
 
@@ -28,10 +36,22 @@ The $i$-th line of the following $T$ lines contains one, two, or three integers 
 ### Output
 The output consists of two parts separated by an empty line. The first part consists of the answers to incidents $3$ and $4$.
 
-* For each incident 3, output $2$ integers in a line, representing the last rank that is of power $\ge q_i$, and report the label of the classmate at that rank. If there is no such classmate, please output two numbers `0 0` as a single line.
-* For each incident 4, output $1$ integer in a line, the total power increase of classmate labeled $b_i$ from the last $m_i$ attacks. If the number of attacks from $b_i$ is less than $m_i$, output the total power increase of classmate labeled $b_i$ from all attacks.
+* For each incident 3, output $2$ integers in a line,
+representing the last rank that is of power $\ge q_i$,
+and report the label of the classmate at that rank.
+If there is no such classmate,
+please output two numbers `0 0` as a single line.
+* For each incident 4, output $1$ integer in a line,
+the total power increase of classmate labeled $b_i$ from the last $m_i$ attacks.
+If the number of attacks from $b_i$ is less than $m_i$,
+output the total power increase of classmate labeled $b_i$ from all attacks.
 
-The second part consists of the game record. It contains $N$ lines, and the $j$-th line is the record for the classmate labeled $j$. The first integer $k_j$ of the line denotes the number of attacks that the classmate has executed. Then, the next $k_j$ numbers denote the power gained from (i.e. the difference) the first attack, the second attack, etc. Please separate the integers by space.
+The second part consists of the game record.
+It contains $N$ lines,
+and the $j$-th line is the record for the classmate labeled $j$.
+The first integer $k_j$ of the line denotes the number of attacks that the classmate has executed.
+Then, the next $k_j$ numbers denote the power gained from (i.e. the difference) the first attack, the second attack, etc.
+Please separate the integers by space.
 
 ### Constraints
 * $1\leq N \leq 10^6$
@@ -150,3 +170,4 @@ The initial list of number(power), ordered by ranks, is: 1(20) 2(15) 3(10) 4(10)
 ```
 ## Hints
 Please be aware that the bonus subtask is intended as an optional extra, meaning that solving it is not obligatory. However, if you are keen on tackling it, the data structure introduced in Problem 3 could serve as one potential tool, alongside others that you will learn later in this semester.
+
