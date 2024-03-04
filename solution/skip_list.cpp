@@ -27,7 +27,6 @@ Node *new_node(ll v, int ind, int level) {
 typedef struct Classmate {
   ll p;
   Node *record_head; // head: top, tail: bottom
-  Node *cursor;
   int n_record;
   int rank; // classmate -> rank
   int last_up;
@@ -94,7 +93,7 @@ ll query(int i, int ind) {
 
 void player_init(int i, int p, int rank) {
   player[i].p = p;
-  player[i].cursor = player[i].record_head = new_node(0, 0, 0);
+  player[i].record_head = new_node(0, 0, 0);
   player[i].n_record = 0;
   player[i].rank = rank;
   player[i].last_up = 0;
