@@ -1,44 +1,37 @@
 ## Problem Description
 
-There are $N$ classmates of Little Shimeming playing **Dragon's Song: Awakening** (DSA), a mobile game notorious for its inflationary powers.
+$N$ classmates of Little Shimeming are playing **Dragon's Song: Awakening** (DSA), a mobile game notorious for its inflationary powers. The classmates are labeled from $1$ to $N$ based on their initial ranks in the game. Each of them possesses a power denoted as $p_1, p_2, \cdots, p_N$, where $p_1 \geq p_2 \geq \cdots \geq p_N$.
 
-The classmates are labeled from $1$ to $N$ based on their ranks in the game. Each of them possesses a power denoted as $p_1, p_2, \cdots, p_N$, where $p_1 \geq p_2 \geq \cdots \geq p_N$.
+The game proceeds with $T$ incidents happening sequentially. The $i$-th incident is one of the following:
 
-Then $T$ incidents happens sequentially. The $i$-th incidents is one of the following:
+1. The classmate labeled $a_i$ at rank $j$ attacks! That is, ze increases zir power to be the same as the classmate that is right in front of them (i.e. the classmate at rank $j\!-\!1$). Then the two classmates swap their ranks.
+    * If the classmate labeled $a_i$ is already at the first place, nothing happens.
+    * If the two classmates are of the same power, there is no power increase but the swapping should still happen.
 
-1. The classmate labeled $a_i$ tops up their power to equal to that of the person ahead of they in ranking by one place. Then launch an attack and swap their ranks. 
-* If the classmate labeled $a_i$ is already the first place, no action is taken.
-* If the power of the classmate labeled $a_i$ is the same as that of the person ahead of they in ranking by one place, they still top up their power by 0.
+2. The game rewards each classmate according to zir rank. The classmate at rank $1$ increases zir power by $(N-1)$ points, the classmate at rank $2$ increases zir power by $(N-2)$ points, and so on.
 
-2. As rewards for ranking, the game reinforce the $1^{\text{st}}$ place's power by $(N-1)$ points, the $2^{\text{nd}}$ place's power by $(N-2)$, and so on.
+3. Little Shimeming can query the last rank that is of power $\ge q_i$, and report the label of the classmate at that rank.
 
-3. Little Shimeming wants to investigate in power inflation. Please tell them the last place with at least $q_i$ points of power and that person's label.
-
-4. Little Shimeming wants to know how much the classmate labeled $b_i$ has spent for topping up rencently. Please tell they the sum of the power gained by topping up in the last $m_i \leq M$ ($m_i = M$ for the basic 100 pts) attacks launched by the classmate labeled $b_i$.
+4. Little Shimeming can query the total power increase of classmate labeled $b_i$ from the last $m_i$ attacks, where $m_i$ is no more than some known constant $M$.
 
 ### Input
 
-The first line contains three space-separated integer $N$, $T$ and $M$.
+The first line contains three space-separated integers $N$, $T$, and $M$.
 The second line contains $N$ integers $p_1$, $p_2$, $\cdots$, $p_N$.
-The $i$-th line of the following $T$ lines is one of the following:
+The $i$-th line of the following $T$ lines contains one, two, or three integers depending on the incident:
 * $1$ $a_i$, indicating incident 1 happens.
 * $2$, indicating incident 2 happens.
 * $3$ $q_i$, indicating incident 3 happens.
 * $4$ $b_i$ $m_i$, indicating incident 4 happens.
 
-where $a_i$, $q_i$, $b_i$, $m_i$ are integers.
-
 
 ### Output
-The output consists of two parts separated by an empty line.
+The output consists of two parts separated by an empty line. The first part consists of the answers to incidents $3$ and $4$.
 
-The first part consists of the answers to Little Shimeming's question.
-* For incident 3, output 2 integers, representing the last place with at least $q_i$ power and the label of the classmate at that place. If no such classmate, output "$0$ $0$" (without quotation marks).
-* For incident 4, output 1 integer, representing the total power gained by topping up in the last $m_i$ attacks launched by the classmate labeled $b_i$. If the number of attacks launched by the classmate is less than $m_i$, output the sum of the power gained by topping up in all their attacks.
+* For each incident 3, output $2$ integers in a line, representing the last rank that is of power $\ge q_i$, and report the label of the classmate at that rank. If there is no such classmate, please output two numbers `0 0` as a single line.
+* For each incident 4, output $1$ integer in a line, the total power increase of classmate labeled $b_i$ from the last $m_i$ attacks. If the number of attacks from $b_i$ is less than $m_i$, output the total power increase of classmate labeled $b_i$ from all attacks.
 
-The first integer $k_j$ in the $j$-th line of the second part (consists of $N$ lines) represents the number of attack the classmate labeled $j$ launched. The subsequent integers denote the power gained by topping up in each attack, in order.
-
-Please separate integers in each line by spaces.
+The second part consists of the game record. It contains $N$ lines, and the $j$-th line is the record for the classmate labeled $j$. The first integer $k_j$ of the line denotes the number of attacks that the classmate has executed. Then, the next $k_j$ numbers denote the power gained from (i.e. the difference) the first attack, the second attack, etc. Please separate the integers by space.
 
 ### Constraints
 * $1\leq N \leq 10^6$
@@ -65,7 +58,7 @@ Please separate integers in each line by spaces.
 * $m_i = M$
 
 ### Subtask 5 (20 bonus pts)
-No other constraints.
+* No other constraints, i.e., it is possible that $m_i < M$.
 
 ## Sample Testcases
 ### Sample Input 1 (basic)
@@ -90,10 +83,9 @@ No other constraints.
 2 0 5
 0
 ```
-### Explanation for Sample Testcase 1
-The initial ranking is: 1(20) 2(15) 3(10) 4(10) 5(0).
-After each incident, the rankings become:
-1. No changes occur because the classmate labeled 1 is already the first place.
+### Explanation for Sample 1
+The initial list of number(power), ordered by ranks, is: 1(20) 2(15) 3(10) 4(10) 5(0). After each incident, the list becomes:
+1. No changes occur because the classmate labeled 1 is already at the first place.
 2. 1(20) 2(15) 4(10) 3(10) 5(0)
 3. 1(20) 4(15) 2(15) 3(10) 5(0)
 4. 1(24) 4(18) 2(17) 3(11) 5(0)
@@ -156,3 +148,5 @@ After each incident, the rankings become:
 0
 2 3 481
 ```
+## Hints
+Please be aware that the bonus subtask is intended as an optional extra, meaning that solving it is not obligatory. However, if you are keen on tackling it, the data structure introduced in Problem 3 could serve as one potential tool, alongside others that you will learn later in this semester.
