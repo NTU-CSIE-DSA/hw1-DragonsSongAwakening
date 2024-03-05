@@ -16,7 +16,7 @@ Alternatively, employing advanced data structures like vectors could reduce the 
 Another strategy involves pre-reading all input and allocating precisely sized arrays for each classmate, also achieving a time complexity of $O(1)$ for incident 4.
 
 ## sample code
-<!-- 我到時候會整理出一份 code，註解函數、幾個重要變數在幹嘛 -->
+<!-- 註解函數、幾個重要變數在幹嘛 -->
 ```c
 #include<stdio.h>
 #include<stdlib.h>
@@ -25,11 +25,11 @@ Another strategy involves pre-reading all input and allocating precisely sized a
 #define MAXN 1000006
 typedef long long ll;
 int N, M;
-int n_up = 0;
+int n_up = 0; // number of incident 2
 
-typedef struct Node {
+typedef struct Node { // Node of skip list
   struct Node *pre, *nxt, *below;
-  ll value;
+  ll value; // sum of increased powers from the 1st attack to ind-th attack
   int ind, level;
 } Node;
 
@@ -45,25 +45,25 @@ Node *new_node(ll v, int ind, int level) {
 }
 
 typedef struct Classmate {
-  ll p;
-  Node *record_head; // head: top
-  Node *cursor;
-  int n_record;
+  ll p; // power
+  Node *record_head; // head of skip list
+  int n_record; // number of attacks
   int rank; // classmate -> rank
-  int last_up;
+  int last_up; // the time stamp of the last power update for incident 2
 } Classmate;
 
 Classmate player[MAXN];
 int rank_table[MAXN]; // rank -> classmate
 
-Node *buildup(Node *node) {
+Node *buildup(Node *node) { // create a new layer above the node
   Node *tmp = new_node(node->value, node->ind, node->level+1);
   tmp->below = node;
   return tmp;
 }
 
-void append_back(int i, ll v) {
-  Node *path[40] = {}; // 2 * lg(5e5)
+void append_back(int i, ll v) { // append a new record to the rear of the record list
+  // 2*lg(5e5) < 40, a reasonable max height of skip list
+  Node *path[40] = {};
   int level[40] = {};
   Node *tmp = player[i].record_head;
   Node *head = player[i].record_head;
@@ -95,7 +95,7 @@ void append_back(int i, ll v) {
   player[i].n_record++;
 }
 
-ll query(int i, int ind) {
+ll query(int i, int ind) { // query the value of node indexed ind
   Node *tmp = player[i].record_head;
   while (tmp->ind < ind) {
     if (tmp->nxt && tmp->nxt->ind <= ind) tmp = tmp->nxt;
@@ -106,12 +106,12 @@ ll query(int i, int ind) {
 
 void player_init(int i, int p, int rank) {
   player[i].p = p;
-  player[i].cursor = player[i].record_head = new_node(0, 0, 0);
+  player[i].record_head = new_node(0, 0, 0);
   player[i].n_record = 0;
   player[i].rank = rank;
   player[i].last_up = 0;
 }
-ll update(int i) {
+ll update(int i) { // update the power of classmate labeled i
   player[i].p += (ll)(N - player[i].rank) * (n_up - player[i].last_up);
   player[i].last_up = n_up;
   return player[i].p;
@@ -204,7 +204,11 @@ int main() {
 ```
 
 <!-- 如果可以的話加上： -->
-## common mistake
+## common mistakes
 <!-- 寫幾個常見錯誤 -->
+* One may want to create an $(N\times T)$-size 2D array. The max size of this array is approximately $c \cdot 10^6 \cdot 5\cdot 10^5 (\text{bytes})\approx c\cdot 480000 (\text{MB})$, which exceeds the memory limit.
+* You should ensure your binary search find the last rank even if there're multiple classmates having the same power.
+
 ## coding tips
 <!-- 一些簡化程式複雜程度的技巧 -->
+* Always call `update()` when you want to inquire a classmate's power to ensure you obtain the correct power. Let the return value of `update()` be the power can simplify your code.
