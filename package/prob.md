@@ -14,7 +14,7 @@ That is, ze increases zir power to be the same as the classmate that is right in
 (i.e. the classmate at rank $j-1$).
 Then the two classmates swap their ranks.
     * If the classmate labeled $a_i$ is already at the first place, nothing happens and **the attack does not count**.
-    * If the two classmates are of the same power, there is no power increase but the swapping should still happen.
+    * If the two classmates are of the same power, there is no power increase but the swapping should still happen. That is, **the attack still counts**.
 
 2. The game rewards each classmate according to zir rank. The classmate at rank $1$ increases zir power by $(N-1)$ points, the classmate at rank $2$ increases zir power by $(N-2)$ points, and so on.
 
