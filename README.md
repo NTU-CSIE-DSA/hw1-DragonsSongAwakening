@@ -2,13 +2,13 @@
 <!-- 文字敘述如何實作 -->
 Keywords: `skip list`, `prefix sum`.
 
-In the provided code, we utilize $N$ linked-lists to record the attacks by each classmate, and maintaining the association between rank and classmates through `Classmate.rank` and `rank_table`.
+In the provided code, we utilize $N$ skip lists to record the increased powers of attacks by each classmate, and maintaining the association between ranks and classmates through `Classmate.rank` and `rank_table`.
 
 Below are implementations for each incident:
-1. Swap the rankings of the two classmates and add a new record to the appointed classmate. Note that only two people change their rankings in this incident. $O(1)$.
-2. We count the occurrences of this incident so far, denoted as `n_up`. To check a person's power, the `update()` function quickly calculates their current power. It's essential to invoke `update()` prior to any ranking change. $O(1)$.
-* Use binary search to quickly find the answer. $O(\log N)$.
-* For the basic problem, you can just maintain the summation of the last $M$ attacks for each classmate. $O(1)$
+1. Swap the ranks of the two classmates and add a new record to the appointed classmate. Note that only two people change their ranks in this incident. $O(1)$.
+2. We count the occurrences of this incident using `n_up`. To check a person's power, the `update()` function quickly calculates zir current power. It's essential to invoke `update()` prior to any ranking change. $O(1)$.
+3. Use binary search to quickly find the answer. $O(\log N)$.
+4. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate. $O(1)$
 For the bonus problem, you should store the prefix sum in each node and apply skip list to quickly access the nodes. $O(\log N)$.
 
 #### Other approaches
@@ -206,8 +206,9 @@ int main() {
 <!-- 如果可以的話加上： -->
 ## common mistakes
 <!-- 寫幾個常見錯誤 -->
-* One may want to create an $(N\times T)$-size 2D array. The max size of this array is approximately $c \cdot 10^6 \cdot 5\cdot 10^5 (\text{bytes})\approx c\cdot 480000 (\text{MB})$, which exceeds the memory limit.
-* You should ensure your binary search find the last rank even if there're multiple classmates having the same power.
+* One may want to create an $(N\times T)$-size 2D array. The maximum size of this array is approximately $c \cdot 10^6 \cdot 5\cdot 10^5 (\text{bytes})\approx c\cdot 480000 (\text{MB})$, which exceeds the memory limit.
+* You should ensure your binary search find the last rank even if there're multiple classmates with the same power.
+* You should use store power-related data using `long long` to prevent overflow.
 
 ## coding tips
 <!-- 一些簡化程式複雜程度的技巧 -->
