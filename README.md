@@ -105,7 +105,7 @@ void append_back(int i, ll v) {  // append a new record to the rear of the recor
   player[i].n_record++;
 }
 
-ll query(int i, int ind) {  // query the value of the `idx`-th node in the skip list of classmate `i`
+ll query(int i, int ind) {  // query the value of the `ind`-th node in the skip list of classmate `i`
   Node *tmp = player[i].record_head;
   while (tmp -> ind < ind) {
     if (tmp -> nxt && tmp -> nxt -> ind <= ind) tmp = tmp -> nxt;
