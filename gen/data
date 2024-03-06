@@ -141,3 +141,12 @@ gen4 -subtask 5 -N 1000000 -n 10 -T 500000 -M 1777 -duplicate 20
 gen4 -subtask 5 -N 999857 -n 1535 -T 500000 -M 77 -duplicate 9998
 gen4 -subtask 5 -N 1000000 -n 1 -T 500000 -M 155555 -duplicate 500
 gen4 -subtask 5 -N 1000000 -n 3 -T 500000 -M 155555 -duplicate 500
+
+gen4 -subtask 5 -N 1000000 -n 10 -T 500000 -duplicate 20 -smallm 1
+gen4 -subtask 5 -N 999857 -n 1535 -T 500000 -duplicate 9998 -smallm 1
+gen4 -subtask 5 -N 1000000 -n 1 -T 500000 -duplicate 500 -smallm 1
+gen4 -subtask 5 -N 1000000 -n 3 -T 500000 -duplicate 500 -smallm 1
+gen4 -subtask 5 -N 1000000 -n 10 -T 500000 -M 1777 -duplicate 20 -smallm 1
+gen4 -subtask 5 -N 999857 -n 1535 -T 500000 -M 77 -duplicate 9998 -smallm 1
+gen4 -subtask 5 -N 1000000 -n 1 -T 500000 -M 155555 -duplicate 500 -smallm 1
+gen4 -subtask 5 -N 1000000 -n 3 -T 500000 -M 155555 -duplicate 500 -smallm 1

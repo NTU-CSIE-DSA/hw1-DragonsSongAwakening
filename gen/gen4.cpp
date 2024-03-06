@@ -18,6 +18,7 @@ const int MAXN = 1e6+6;
 int n_up = 0;
 int N, M;
 int subtask;
+bool smallm;
 
 struct Classmate {
   ll p;
@@ -77,8 +78,13 @@ void gen_incident(int type) {
 		cout << ' ' << rnd.any(r_top_up);
 		if (subtask != 5) cout << ' ' << M;
 		else if (rnd.next(0, 1000)) {
-			if (rnd.next(0, 4)) cout << ' ' << min(rnd.next(max((int)player[b].record.size()/10*9, 1), (int)player[b].record.size()), M);
-			else cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+			if (smallm) {
+				if (rnd.next(0, 4)) cout << ' ' << min(rnd.next(1, max((int)player[b].record.size()/10, 1)), M);
+				else cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+			} else {
+				if (rnd.next(0, 4)) cout << ' ' << min(rnd.next(max((int)player[b].record.size()/10*9, 1), (int)player[b].record.size()), M);
+				else cout << ' ' << min(rnd.next(1, (int)player[b].record.size()), M);
+			}
 		} else cout << ' ' << rnd.next(1, M);
   } else cout << "ERROR\n";
 	cout << '\n';
@@ -100,6 +106,7 @@ int main(int argc, char* argv[]) {
 	int T = opt<int>("T", (subtask == 1)? 1'000: 500'000);
 	assert(N >= 2*n);
 	M = opt<int>("M", (subtask == 3 || subtask == 2)? 1: rnd.next(1, 500'000));
+	smallm = opt<bool>("smallm", 0);
 	cout << N << ' ' << T << ' ' << M << '\n';
 	selected = pick(n);
 
