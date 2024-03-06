@@ -44,6 +44,12 @@ Node *new_node(ll v, int ind, int level) {  // add a new node of skip list
   return node;
 }
 
+Node *buildup(Node *node) {  // create a new layer above the node
+  Node *tmp = new_node(node -> value, node -> ind, node -> level + 1);
+  tmp -> below = node;
+  return tmp;
+}
+
 typedef struct Classmate {
   ll p; // power
   Node *record_head;  // head of skip list
@@ -55,10 +61,20 @@ typedef struct Classmate {
 Classmate player[MAXN];
 int rank_table[MAXN];  // correspond from rank to the lable of classmate
 
-Node *buildup(Node *node) {  // create a new layer above the node
-  Node *tmp = new_node(node -> value, node -> ind, node -> level + 1);
-  tmp -> below = node;
-  return tmp;
+void player_init(int i, int p, int rank) {  // init the i-th classmate with power `p` and rank `rank`
+  player[i].p = p;
+  player[i].record_head = new_node(0, 0, 0);
+  player[i].n_record = 0;
+  player[i].rank = rank;
+  player[i].last_up = 0;
+}
+
+void swap_rank(int a, int b) {  // swap the rank of the `a`-th player and the `b`-th player
+  int tmp = player[a].rank;
+  player[a].rank = player[b].rank;
+  player[b].rank = tmp;
+  rank_table[player[a].rank] = a;
+  rank_table[player[b].rank] = b;
 }
 
 void append_back(int i, ll v) {  // append a new record to the rear of the record list
@@ -114,14 +130,6 @@ ll query(int i, int ind) {  // query the value of the `ind`-th node in the skip 
   return tmp -> value;
 }
 
-void player_init(int i, int p, int rank) {  // init the i-th classmate with power `p` and rank `rank`
-  player[i].p = p;
-  player[i].record_head = new_node(0, 0, 0);
-  player[i].n_record = 0;
-  player[i].rank = rank;
-  player[i].last_up = 0;
-}
-
 ll update(int i) {  // update the power of classmate labeled i
   player[i].p += (ll) (N - player[i].rank) * (n_up - player[i].last_up);
   player[i].last_up = n_up;
@@ -131,14 +139,6 @@ ll update(int i) {  // update the power of classmate labeled i
 void top_up(int i, ll power) {  // increase the power of `i`-th player by `power`
   player[i].p += power;
   append_back(i, power);
-}
-
-void swap_rank(int a, int b) {  // swap the rank of the `a`-th player and the `b`-th player
-  int tmp = player[a].rank;
-  player[a].rank = player[b].rank;
-  player[b].rank = tmp;
-  rank_table[player[a].rank] = a;
-  rank_table[player[b].rank] = b;
 }
 
 int binary_search(ll q) {  // search the last rank that is of power >= `q`
