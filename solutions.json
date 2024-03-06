@@ -55,5 +55,11 @@
       "sub2": "correct",
       "sub3": "correct"
     }
+  },
+  "vector_TLE.cpp": {
+    "verdict": "correct",
+    "except": {
+      "full": "time_limit"
+    }
   }
 }
