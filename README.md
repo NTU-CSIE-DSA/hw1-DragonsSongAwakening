@@ -5,11 +5,19 @@ Keywords: `skip list`, `prefix sum`.
 In the provided code, we utilize $N$ skip lists to record the increased powers of attacks by each classmate, and maintaining the association between ranks and classmates through `Classmate.rank` and `rank_table`.
 
 Below are implementations for each incident:
-1. Swap the ranks of the two classmates and add a new record to the appointed classmate. Note that only two people change their ranks in this incident, which is $O(1)$.
-2. We count the occurrences of this incident using `n_up`. To check a person's power, the `update()` function quickly calculates his/her current power. It's essential to invoke `update()` prior to any ranking change, which is $O(1)$.
-3. Use binary search to quickly find the answer, which is $O(\log N)$.
-4. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate, which is $O(1)$.
-For the bonus problem, you should store the prefix sum in each node and apply skip list to quickly access the nodes, which is $O(\log N)$.
+1. Swap the ranks of the two classmates and add a new record to the appointed classmate. Note that only two people change their ranks in this incident.
+   * time complexity: $O(1)$.
+2. We count the occurrences of this incident using `n_up` and record the number of times each classmate update zir power with `last_up`. To check a person's power, the `update()` function quickly calculates his/her current power by adding up the accumulated rewards according to zir rank. It's essential to invoke `update()` prior to any ranking change.
+   * time complexity: $O(1)$.
+4. Use binary search to quickly find the answer.
+   * time complexity: $O(\log N)$.
+6. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate.
+   * time complexity: $O(1)$.
+   
+   For the bonus problem, you can store the prefix sum in each node and apply skip list to quickly access the nodes.
+   $$\text{prefix}(n) = \sum_{i=1}^{n}f(i)$$
+   $$\sum_{i=l}^{r}f(i) = \text{prefix}(r)-\text{prefix}(l)$$
+   * time complexity: $O(\log N)$.
 
 #### Other approaches
 Alternatively, employing advanced data structures like vectors could reduce the time complexity of incident 4 to $O(1)$.
