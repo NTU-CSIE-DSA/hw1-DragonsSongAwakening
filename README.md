@@ -1,23 +1,28 @@
 # [HW1.P4] Dragon's Song: Awakening Tutorial
-<!-- 文字敘述如何實作 -->
+
 Keywords: `skip list`, `prefix sum`.
 
-In the provided code, we utilize $N$ skip lists to record the increased powers of attacks by each classmate, and maintaining the association between ranks and classmates through `Classmate.rank` and `rank_table`.
+In the provided code, we utilize $N$ skip lists to record the increased powers of attacks by each classmate and maintain the association between ranks and classmates through `Classmate.rank` and `rank_table`.
 
 Below are implementations for each incident:
+
 1. Swap the ranks of the two classmates and add a new record to the appointed classmate. Note that only two people change their ranks in this incident.
-   * time complexity: $O(1)$.
-2. We count the occurrences of this incident using `n_up` and record the number of times each classmate update zir power with `last_up`. To check a person's power, the `update()` function quickly calculates his/her current power by adding up the accumulated rewards according to zir rank. It's essential to invoke `update()` prior to any ranking change.
-   * time complexity: $O(1)$.
-4. Use binary search to quickly find the answer.
-   * time complexity: $O(\log N)$.
-6. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate.
-   * time complexity: $O(1)$.
-   
-   For the bonus problem, you can store the prefix sum in each node and apply skip list to quickly access the nodes.
-   $$\text{prefix}(n) = \sum_{i=1}^{n}f(i)$$
-   $$\sum_{i=l}^{r}f(i) = \text{prefix}(r)-\text{prefix}(l)$$
-   * time complexity: $O(\log N)$.
+   * Time complexity: $O(1)$.
+
+2. We count the occurrences of this incident using `n_up` and record the number of times each classmate updates zir power with `last_up`. To check a person's power, the `update()` function quickly calculates zir current power by adding up the accumulated rewards according to zir rank. It's essential to invoke `update()` prior to any ranking change.
+   * Time complexity: $O(1)$.
+
+3. Use binary search to quickly find the answer. (Remember to `update()` before checking the power of the classmate)
+   * Time complexity: $O(\log N)$.
+
+4. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate.
+   * Time complexity: $O(1)$.
+
+For the bonus problem, you can store the prefix sum in each node and apply the skip list to quickly access the nodes.
+$$\text{prefix}(n) = \sum_{i=1}^{n}f(i)$$
+$$\sum_{i=l}^{r}f(i) = \text{prefix}(r)-\text{prefix}(l - 1)$$
+   * Time complexity: $O(\log N)$.
+
 
 #### Other approaches
 Alternatively, employing advanced data structures like vectors could reduce the time complexity of incident 4 to $O(1)$.
@@ -25,7 +30,6 @@ Alternatively, employing advanced data structures like vectors could reduce the 
 Another strategy involves pre-reading all input and allocating precisely sized arrays for each classmate, also achieving a time complexity of $O(1)$ for incident 4.
 
 ## sample code
-<!-- 註解函數、幾個重要變數在幹嘛 -->
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -226,14 +230,11 @@ int main() {
 }
 ```
 
-<!-- 如果可以的話加上： -->
 ## common mistakes
-<!-- 寫幾個常見錯誤 -->
 * One may want to create an $(N\times T)$-size 2D array. The maximum size of this array is approximately $c \cdot 10^6 \cdot 5\cdot 10^5 (\text{bytes})\approx c\cdot 480000 (\text{MB})$, which exceeds the memory limit.
 * You should ensure your binary search finds the last rank even if there are multiple classmates with the same power.
 * You should use store power-related data using `long long` to prevent overflow.
 
 ## coding tips
-<!-- 一些簡化程式複雜程度的技巧 -->
 * In order to directly update the power for each player, use `n_up` and `last_up` to record the information of operation 2.
 * Always call `update()` when you want to inquire a classmate's power to ensure you obtain the correct power. Let the return value of `update()` be the power can simplify your code.
