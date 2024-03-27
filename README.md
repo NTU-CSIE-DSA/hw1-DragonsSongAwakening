@@ -8,19 +8,16 @@ Below are implementations for each incident:
 
 1. Swap the ranks of the two classmates and add a new record to the appointed classmate. Note that only two people change their ranks in this incident.
    * Time complexity: $O(1)$.
-
 2. We count the occurrences of this incident using `n_up` and record the number of times each classmate updates zir power with `last_up`. To check a person's power, the `update()` function quickly calculates zir current power by adding up the accumulated rewards according to zir rank. It's essential to invoke `update()` prior to any ranking change.
    * Time complexity: $O(1)$.
-
 3. Use binary search to quickly find the answer. (Remember to `update()` before checking the power of the classmate)
    * Time complexity: $O(\log N)$.
-
 4. For the basic problem, you can just maintain the summation of the last $M$ increased powers of attacks for each classmate.
    * Time complexity: $O(1)$.
 
-For the bonus problem, you can store the prefix sum in each node and apply the skip list to quickly access the nodes.
-$$\text{prefix}(n) = \sum_{i=1}^{n}f(i)$$
-$$\sum_{i=l}^{r}f(i) = \text{prefix}(r)-\text{prefix}(l - 1)$$
+   For the bonus problem, you can store the prefix sum in each node and apply the skip list to quickly access the nodes.
+   $$\text{prefix}(n) = \sum_{i=1}^{n}f(i)$$
+   $$\sum_{i=l}^{r}f(i) = \text{prefix}(r)-\text{prefix}(l - 1)$$ 
    * Time complexity: $O(\log N)$.
 
 
